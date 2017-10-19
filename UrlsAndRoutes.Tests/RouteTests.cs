@@ -50,7 +50,7 @@ namespace UrlsAndRoutes.Tests
             if (propertySet != null)
             {
                 PropertyInfo[] propInfo = propertySet.GetType().GetProperties();
-                foreach(PropertyInfo pi in propInfo)
+                foreach (PropertyInfo pi in propInfo)
                 {
                     if (!(routeResult.Values.ContainsKey(pi.Name) && valCompare(routeResult.Values[pi.Name], pi.GetValue(propertySet, null))))
                     {
@@ -76,15 +76,11 @@ namespace UrlsAndRoutes.Tests
         [TestMethod]
         public void TestIncomingRoutes()
         {
-            //check for the URL that is hoped for
-            TestRouteMatch("∼/Admin/Index", "Admin", "Index");
-
-            //check that the values are being obtained from the segments
-            TestRouteMatch("~/One/Two", "One", "Two");
-
-            // ensure that too many or too few segments fails to match
-            TestRouteFail("∼/Admin/Index/Segment");
-            TestRouteFail("∼/Admin");
+            TestRouteMatch("∼/", "Home", "Index", new { id = "DefaultId" });
+            TestRouteMatch("∼/Customer", "Customer", "index", new { id = "DefaultId" });
+            TestRouteMatch("∼/Customer/List", "Customer", "List", new { id = "DefaultId" });
+            TestRouteMatch("∼/Customer/List/All", "Customer", "List", new { id = "All" });
+            TestRouteFail("∼/Customer/List/All/Delete");
         }
-}
+    }
 }
