@@ -25,7 +25,8 @@ namespace UrlsAndRoutes
             //routes.MapRoute("MyRoute", "{controller}/{action}", new { controller = "Home", action = "Index" });
             //routes.MapRoute("", "Public/{controller}/{action}", new { controller = "Home", action = "Index" });
 
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}", 
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional });
 
         }
     }
