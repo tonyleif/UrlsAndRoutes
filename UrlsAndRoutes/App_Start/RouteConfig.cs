@@ -13,6 +13,11 @@ namespace UrlsAndRoutes
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapMvcAttributeRoutes();
+            routes.MapRoute("Default", "{controller}/{action}/{id}",
+                new {controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "UrlsAndRoutes.Controllers" });
+
             //    routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             //    routes.MapRoute(
@@ -32,16 +37,16 @@ namespace UrlsAndRoutes
             //                                new[] { "URLsAndRoutes.AdditionalControllers" });
             //myRoute.DataTokens["UseNamespaceFallback"] = false;
 
-            routes.MapRoute("ChromeRoute", "{*catchall}",
-                new { Controller = "Home", action = "Index" },
-                new { customContraint = new UserAgentConstraint("Chrome") },
-                new[] { "UrlsAndRoutes.AdditionalControllers" });
+            //routes.MapRoute("ChromeRoute", "{*catchall}",
+            //    new { Controller = "Home", action = "Index" },
+            //    new { customContraint = new UserAgentConstraint("Chrome") },
+            //    new[] { "UrlsAndRoutes.AdditionalControllers" });
 
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new { controller = "^H.*", action = "Index|About", httpMethod = new HttpMethodConstraint("GET"),
-                      id = new CompoundRouteConstraint(new IRouteConstraint[] { new AlphaRouteConstraint(), new MinLengthRouteConstraint(6) })},
-                new[] { "URLsAndRoutes.Controllers" });
+            //routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+            //    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+            //    new { controller = "^H.*", action = "Index|About", httpMethod = new HttpMethodConstraint("GET"),
+            //          id = new CompoundRouteConstraint(new IRouteConstraint[] { new AlphaRouteConstraint(), new MinLengthRouteConstraint(6) })},
+            //    new[] { "URLsAndRoutes.Controllers" });
         }
     }
 }
