@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Mvc.Routing.Constraints;
+using UrlsAndRoutes.Infrastructure;
 
 namespace UrlsAndRoutes
 {
@@ -31,18 +32,18 @@ namespace UrlsAndRoutes
             //                                new[] { "URLsAndRoutes.AdditionalControllers" });
             //myRoute.DataTokens["UseNamespaceFallback"] = false;
 
-            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}", 
+            routes.MapRoute("ChromeRoute", "{*catchall}",
+                new { Controller = "Home", action = "Index" },
+                new { customContraint = new UserAgentConstraint("Chrome") },
+                new[] { "UrlsAndRoutes.AdditionalControllers" });
+
+            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                new { controller = "^H.*", action = "^Index$|^About$",
-                    httpMethod = new HttpMethodConstraint("GET"),
-                    id = new CompoundRouteConstraint(new IRouteConstraint[]
-                         {
-                            new AlphaRouteConstraint(),
-                            new MinLengthRouteConstraint(6)
-                         })
-                },
-                new[] { "URLsAndRouters.Contollers" });
+                new { controller = "^H.*", action = "Index|About", httpMethod = new HttpMethodConstraint("GET"),
+                      id = new CompoundRouteConstraint(new IRouteConstraint[] { new AlphaRouteConstraint(), new MinLengthRouteConstraint(6) })},
+                new[] { "URLsAndRoutes.Controllers" });
         }
     }
 }
+
 
