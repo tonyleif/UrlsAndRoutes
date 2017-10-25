@@ -73,20 +73,20 @@ namespace UrlsAndRoutes.Tests
             Assert.IsTrue(result == null || result.Route == null);
         }
 
-        [TestMethod]
-        public void TestIncomingRoutes()
-        {
-            TestRouteMatch("∼/", "Home", "Index");
-            TestRouteMatch("∼/Home", "Home", "Index");
-            TestRouteMatch("∼/Home/Index", "Home", "Index");
-            TestRouteMatch("∼/Home/About", "Home", "About");
-            TestRouteMatch("∼/Home/About/MyId", "Home", "About", new { id = "MyId" });
-            TestRouteMatch("∼/Home/About/MyId/More/Segments", "Home", "About",
-            new { id = "MyId", catchall = "More/Segments" });
-            TestRouteFail("∼/Home/OtherAction");
-            TestRouteFail("∼/Account/Index");
-            TestRouteFail("∼/Account/About");
-        }
+        //[TestMethod]
+        //public void TestIncomingRoutes()
+        //{
+        //    TestRouteMatch("∼/", "Home", "Index");
+        //    TestRouteMatch("∼/Home", "Home", "Index");
+        //    TestRouteMatch("∼/Home/Index", "Home", "Index");
+        //    TestRouteMatch("∼/Home/About", "Home", "About");
+        //    TestRouteMatch("∼/Home/About/MyId", "Home", "About", new { id = "MyId" });
+        //    TestRouteMatch("∼/Home/About/MyId/More/Segments", "Home", "About",
+        //    new { id = "MyId", catchall = "More/Segments" });
+        //    TestRouteFail("∼/Home/OtherAction");
+        //    TestRouteFail("∼/Account/Index");
+        //    TestRouteFail("∼/Account/About");
+        //}
     }
 }
 
