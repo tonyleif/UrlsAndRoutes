@@ -22,5 +22,16 @@
     <div>
         @Html.ActionLink("This is an outgoing URL", "CustomVariable", new { id = "Hello"})
     </div>
+    <div>
+        @Html.ActionLink("This is an outgoing URL", "Index", "Home", null, new { id = "myAndchroID", @class = "myCSSClass"})
+    </div>
+    <div>
+        @Html.ActionLink("This is a fully qualified outgoing URL", "Index", "Home", "https", "myserver.mydomain.com", " myFragmentName",
+            new { id = "MyId"}, new { id = "myAnchorID", @class = "myCSSClass"})
+    </div>
+    <div>
+        This is a URL:
+        @Url.Action("Index", "Home", new { id = "MyId"})
+    </div>
 </body>
 </html>
