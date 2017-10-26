@@ -33,5 +33,9 @@
         This is a URL:
         @Url.Action("Index", "Home", new { id = "MyId"})
     </div>
+    <div>
+        This is a Custom Route URL:
+        @Html.ActionLink("Click me", "GetLegacyURL", new { legacyURL = "∼/articles/Windows_3.1_Overview.html" })
+    </div>
 </body>
 </html>
